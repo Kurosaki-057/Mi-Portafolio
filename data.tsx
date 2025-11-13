@@ -176,7 +176,7 @@ export const dataPortfolio = [
     {
         id: 2,
         title: "Aviu",
-        image: "/aviu.png",
+        image: "/Aviu.png",
         urlGithub: "https://github.com/lupisAV/aivU/tree/Daniel/backend",
         urlDemo: "#!",
     },
