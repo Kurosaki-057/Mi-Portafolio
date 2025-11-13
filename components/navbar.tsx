@@ -1,13 +1,11 @@
 "use client";
 import { itemsNavbar } from "@/data";
 import { useEffect, useState } from "react";
-import { usePathname } from "next/navigation";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { Moon, Sun } from "lucide-react";
 
 const Navbar = () => {
-    const router = usePathname();
     const [isDark, setIsDark] = useState(false);
 
     useEffect(() => {

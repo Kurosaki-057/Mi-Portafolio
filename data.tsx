@@ -177,15 +177,11 @@ export const dataPortfolio = [
         id: 2,
         title: "Aviu",
         image: "aviu.png",
-        urlGithub: "#!",
+        urlGithub: "https://github.com/lupisAV/aivU/tree/Daniel/backend",
         urlDemo: "#!",
     },
     {
-        id: 3,
-        title: "Portal Educativo",
-        image: "/image-3.jpg",
-        urlGithub: "#!",
-        urlDemo: "#!",
+        
     }
 ];
 
