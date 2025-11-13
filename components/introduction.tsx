@@ -34,8 +34,15 @@ const Introduction = () => {
                         <a href="/projects" className="px-3 py-2 my-2 transition-all border-2 cursor-pointer text-md w-fit rounded-xl hover:shadow-xl hover:shadow-white/50">
                             Ver proyectos
                         </a>
-                        <a href="/contact"
-                            className="px-3 py-2 my-5 transition-all border-2 cursor-pointer text-md w-fit text-secondary border-secondary rounded-xl hover:shadow-xl hover:shadow-secondary" >
+                        {
+                            // WhatsApp link
+                        }
+                        <a
+                            href={`https://wa.me/573044434698?text=${encodeURIComponent('Hola, quisiera contactar contigo sobre tus servicios.')}`}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="px-3 py-2 my-5 transition-all border-2 cursor-pointer text-md w-fit text-secondary border-secondary rounded-xl hover:shadow-xl hover:shadow-secondary"
+                        >
                             Contacta conmigo
                         </a>
                     </div>

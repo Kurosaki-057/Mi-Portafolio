@@ -1,19 +1,74 @@
-import { BookText, CodeSquare, HomeIcon, UserRound, Linkedin, Instagram, Rss, Crop, Pencil, Computer, Book, Rocket, Speech, Server, Database } from "lucide-react";
+import type { ReactElement } from "react";
+import { BookText, CodeSquare, HomeIcon, UserRound, Linkedin, Instagram, Rss, Crop, Pencil, Computer, Rocket, Server, Database } from "lucide-react";
 
-export const socialNetworks = [
-    
+// Tipos para los datos exportados
+export interface SocialNetwork {
+    id: number;
+    logo: ReactElement;
+    src: string;
+}
+
+export interface NavItem {
+    id: number;
+    title: string;
+    icon: ReactElement;
+    link: string;
+}
+
+export interface AboutItem {
+    id: number;
+    title: string;
+    date?: string;
+    subtitle?: string;
+    description?: string;
+}
+
+export interface CounterItem {
+    id: number;
+    endCounter: number;
+    text: string;
+    lineRight: boolean;
+    lineRightMobile: boolean;
+}
+
+export interface ServiceItem {
+    icon: ReactElement;
+    title: string;
+    description: string;
+}
+
+export interface PortfolioItem {
+    id: number;
+    title: string;
+    image: string;
+    urlGithub: string;
+    urlDemo: string;
+}
+
+export interface TestimonialItem {
+    id: number;
+    name: string;
+    description: string;
+    imageUrl: string;
+}
+
+export interface SkillItem {
+    name: string;
+    level: string;
+    icon: ReactElement;
+}
+
+export const socialNetworks: SocialNetwork[] = [
     {
         id: 2,
         logo: <Linkedin size={30} strokeWidth={1} />,
-        src: "https://www.linkedin.com/in/daniel-cantillo-a3240b31a",
+        src: "www.linkedin.com/in/danielcantillo05",
     },
     {
         id: 3,
         logo: <Instagram size={30} strokeWidth={1} />,
         src: "https://www.instagram.com/TU_INSTAGRAM_URL",
     },
-    
-    
     {
         id: 4,
         logo: <Rss size={30} strokeWidth={1} />,
@@ -21,43 +76,35 @@ export const socialNetworks = [
     }
 ];
 
-
-export const itemsNavbar = [
+export const itemsNavbar: NavItem[] = [
     {
         id: 1,
-        title: "Home",
+        title: "Inicio",
         icon: <HomeIcon size={25} color="#fff" strokeWidth={1} />,
         link: "/",
     },
     {
         id: 2,
-        title: "User",
+        title: "Sobre mí",
         icon: <UserRound size={25} color="#fff" strokeWidth={1} />,
         link: "/about-me",
     },
     {
         id: 3,
-        title: "Book",
+        title: "Servicios",
         icon: <BookText size={25} color="#fff" strokeWidth={1} />,
         link: "/services",
     },
     {
         id: 4,
-        title: "Target",
+        title: "Portafolio",
         icon: <CodeSquare size={25} color="#fff" strokeWidth={1} />,
         link: "/portfolio",
     },
-    {
-        id: 5,
-        title: "Home",
-        icon: <Speech size={25} color="#fff" strokeWidth={1} />,
-        link: "/testimonials",
-    },
+    // Testimonios eliminado: no hay testimonios de clientes
 ];
 
-export const dataAboutPage = [
-   
-]
+export const dataAboutPage: AboutItem[] = [];
 
 export const dataCounter = [
     {
@@ -76,14 +123,14 @@ export const dataCounter = [
     },
     {
         id: 2,
-        endCounter: 6,
+        endCounter: 7,
         text: "semestres de estudio",
         lineRight: true,
         lineRightMobile: true,
     },
     {
         id: 3,
-        endCounter: 1,
+        endCounter: 4,
         text: "proyectos en mi github",
         lineRight: false,
         lineRightMobile: false,
@@ -121,15 +168,15 @@ export const serviceData = [
 export const dataPortfolio = [
     {
         id: 1,
-        title: "E-commerce Platform",
-        image: "/image-1.jpg",
-        urlGithub: "#!",
+        title: "Skateland",
+        image: "/skateland.png",
+        urlGithub: "https://github.com/Kurosaki-057/Mobile",
         urlDemo: "#!",
     },
     {
         id: 2,
-        title: "Gestión Empresarial",
-        image: "/image-2.jpg",
+        title: "Aviu",
+        image: "aviu.png",
         urlGithub: "#!",
         urlDemo: "#!",
     },
@@ -142,50 +189,7 @@ export const dataPortfolio = [
     }
 ];
 
-export const dataTestimonials = [
-    {
-        id: 1,
-        name: "Trabajo en Equipo",
-        description:
-            "Excelente capacidad para colaborar en equipos multidisciplinarios, comunicando ideas de manera clara y efectiva. Experiencia en metodologías ágiles y resolución de conflictos.",
-        imageUrl: "/profile1.png",
-    },
-    {
-        id: 2,
-        name: "Resolución de Problemas",
-        description:
-            "Habilidad para analizar situaciones complejas, identificar soluciones innovadoras y tomar decisiones efectivas bajo presión. Enfoque en resultados y mejora continua.",
-        imageUrl: "/profile2.png",
-    },
-    {
-        id: 3,
-        name: "Adaptabilidad",
-        description:
-            "Capacidad para adaptarse rápidamente a nuevos entornos y tecnologías. Aprendizaje continuo y disposición para enfrentar nuevos desafíos con entusiasmo.",
-        imageUrl: "/profile3.png",
-    },
-    {
-        id: 4,
-        name: "Mobile Development",
-        description:
-            "Desarrollo de aplicaciones móviles multiplataforma con React Native. Creación de experiencias nativas y optimizadas para diferentes dispositivos.",
-        imageUrl: "/profile4.png",
-    },
-    {
-        id: 5,
-        name: "UI/UX Design",
-        description:
-            "Diseño de interfaces intuitivas y atractivas. Creación de prototipos y wireframes. Implementación de principios de diseño y accesibilidad.",
-        imageUrl: "/profile5.png",
-    },
-    {
-        id: 6,
-        name: "Testing & Quality",
-        description:
-            "Implementación de pruebas unitarias, de integración y end-to-end. Aseguramiento de la calidad del código y optimización del rendimiento.",
-        imageUrl: "/profile6.png",
-    },
-];
+// Sección de testimonios eliminada porque no aplicaba
 
 export const skills = [
     {
@@ -195,12 +199,12 @@ export const skills = [
     },
     {
         name: "Backend",
-        level: "Básico",
+        level: "avanzado",
         icon: <Server size={24} />
     },
     {
         name: "Base de Datos",
-        level: "Básico",
+        level: "intermedio",
         icon: <Database size={24} />
     },
     {

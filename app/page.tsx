@@ -69,12 +69,14 @@ export default function Home() {
                 >
                   Ver proyectos
                 </Link>
-                <Link 
-                  href="/contact"
-                  className="px-8 py-3 rounded-lg border-2 border-secondary hover:bg-secondary/10 transition-all duration-300 text-lg font-medium"
-                >
-                  Contacta conmigo
-                </Link>
+                 <a
+                   href={`https://wa.me/573044434698?text=${encodeURIComponent('Hola, quisiera contactar contigo sobre tus servicios.')}`}
+                   target="_blank"
+                   rel="noopener noreferrer"
+                   className="px-8 py-3 rounded-lg border-2 border-secondary hover:bg-secondary/10 transition-all duration-300 text-lg font-medium"
+                 >
+                   Contacta conmigo
+                 </a>
               </motion.div>
             </motion.div>
 

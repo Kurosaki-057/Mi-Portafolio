@@ -66,9 +66,14 @@ const ServicesPage = () => {
                         transition={{ duration: 0.5, delay: 0.5 }}
                         className="text-center mt-12"
                     >
-                        <button className="px-8 py-3 rounded-lg bg-gradient-to-r from-secondary to-purple-500 hover:opacity-90 transition-all duration-300 text-lg font-medium">
+                        <a
+                            href={`https://wa.me/573044434698?text=${encodeURIComponent('Hola, quisiera contactar contigo sobre tus servicios.')}`}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="px-8 py-3 rounded-lg bg-gradient-to-r from-secondary to-purple-500 hover:opacity-90 transition-all duration-300 text-lg font-medium"
+                        >
                             Contacta conmigo
-                        </button>
+                        </a>
                     </motion.div>
                 </div>
             </div>

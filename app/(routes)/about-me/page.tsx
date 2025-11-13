@@ -5,6 +5,54 @@ import ContainerPage from "@/components/container-page";
 import CounterServices from "@/components/counter-services";
 import TimeLine from "@/components/time-line";
 import TransitionPage from "@/components/transition-page";
+import { skills } from "@/data";
+import { motion } from "framer-motion";
+
+// Componente local para renderizar las habilidades con barras y micro-animaciones
+function levelToPercent(level: string) {
+    const key = (level || '').toLowerCase();
+    if (key.includes('avanz')) return 92;
+    if (key.includes('inter')) return 66;
+    if (key.includes('bás') || key.includes('bas')) return 36;
+    return 50;
+}
+
+const SkillsGrid = () => {
+    return (
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            {skills.map((s, idx) => {
+                const pct = levelToPercent(s.level || '');
+                return (
+                    <motion.div
+                        key={s.name + idx}
+                        initial={{ opacity: 0, y: 8 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.45, delay: idx * 0.05 }}
+                        whileHover={{ translateY: -6 }}
+                        className="p-5 rounded-xl bg-gradient-to-br from-white/5 to-white/8 border border-white/10 shadow-sm"
+                    >
+                        <div className="flex items-center gap-4">
+                            <div className="w-12 h-12 rounded-lg flex items-center justify-center bg-white/5 text-secondary text-2xl">
+                                {s.icon}
+                            </div>
+                            <div>
+                                <div className="text-lg font-semibold">{s.name}</div>
+                                <div className="text-sm text-gray-400">{s.level}</div>
+                            </div>
+                        </div>
+
+                        <div className="mt-4">
+                            <div className="w-full h-3 bg-white/8 rounded-full overflow-hidden">
+                                <div className="h-full bg-gradient-to-r from-secondary to-purple-500" style={{ width: `${pct}%` }} />
+                            </div>
+                            <div className="mt-2 text-xs text-gray-300">Competencia: {pct}%</div>
+                        </div>
+                    </motion.div>
+                );
+            })}
+        </div>
+    );
+};
 
 const AboutMePage = () => {
     return (
@@ -48,159 +96,16 @@ const AboutMePage = () => {
                     <h2 className="text-3xl font-bold text-center mb-8">
                         Habilidades <span className="text-secondary">técnicas</span>
                     </h2>
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                        {/* Frontend */}
-                        <div className="group p-6 bg-gradient-to-br from-white/5 to-white/10 rounded-xl hover:from-white/10 hover:to-white/20 transition-all duration-300 border border-white/10 hover:border-secondary/50 hover:shadow-lg hover:shadow-secondary/20">
-                            <h3 className="text-xl font-bold text-secondary mb-4 flex items-center gap-2">
-                                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-                                </svg>
-                                Frontend
-                            </h3>
-                            <div className="space-y-3">
-                                <div className="flex items-center gap-2 group-hover:translate-x-1 transition-transform">
-                                    <div className="w-2 h-2 bg-secondary rounded-full"></div>
-                                    <span>React & Next.js</span>
-                                </div>
-                                <div className="flex items-center gap-2 group-hover:translate-x-1 transition-transform">
-                                    <div className="w-2 h-2 bg-secondary rounded-full"></div>
-                                    <span>Angular</span>
-                                </div>
-                                <div className="flex items-center gap-2 group-hover:translate-x-1 transition-transform">
-                                    <div className="w-2 h-2 bg-secondary rounded-full"></div>
-                                    <span>TypeScript</span>
-                                </div>
-                                <div className="flex items-center gap-2 group-hover:translate-x-1 transition-transform">
-                                    <div className="w-2 h-2 bg-secondary rounded-full"></div>
-                                    <span>Tailwind CSS</span>
-                                </div>
-                            </div>
-                        </div>
+                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                        {/* Tarjetas dinámicas basadas en data.skills */}
+                        {/** Se importa `skills` desde data.tsx para render dinámico */}
+                        {/** las tarjetas ahora se renderizan en <SkillsGrid /> abajo */}
+                    </div>
 
-                        {/* Backend */}
-                        <div className="group p-6 bg-gradient-to-br from-white/5 to-white/10 rounded-xl hover:from-white/10 hover:to-white/20 transition-all duration-300 border border-white/10 hover:border-secondary/50 hover:shadow-lg hover:shadow-secondary/20">
-                            <h3 className="text-xl font-bold text-secondary mb-4 flex items-center gap-2">
-                                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 12h14M5 12a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v4a2 2 0 01-2 2M5 12a2 2 0 00-2 2v4a2 2 0 002 2h14a2 2 0 002-2v-4a2 2 0 00-2-2m-2-4h.01M17 16h.01" />
-                                </svg>
-                                Backend
-                            </h3>
-                            <div className="space-y-3">
-                                <div className="flex items-center gap-2 group-hover:translate-x-1 transition-transform">
-                                    <div className="w-2 h-2 bg-secondary rounded-full"></div>
-                                    <span>Node.js & Express</span>
-                                </div>
-                                <div className="flex items-center gap-2 group-hover:translate-x-1 transition-transform">
-                                    <div className="w-2 h-2 bg-secondary rounded-full"></div>
-                                    <span>Nest.js</span>
-                                </div>
-                                <div className="flex items-center gap-2 group-hover:translate-x-1 transition-transform">
-                                    <div className="w-2 h-2 bg-secondary rounded-full"></div>
-                                    <span>Python & Django</span>
-                                </div>
-                                <div className="flex items-center gap-2 group-hover:translate-x-1 transition-transform">
-                                    <div className="w-2 h-2 bg-secondary rounded-full"></div>
-                                    <span>RESTful APIs</span>
-                                </div>
-                            </div>
-                        </div>
-
-                        {/* Database */}
-                        <div className="group p-6 bg-gradient-to-br from-white/5 to-white/10 rounded-xl hover:from-white/10 hover:to-white/20 transition-all duration-300 border border-white/10 hover:border-secondary/50 hover:shadow-lg hover:shadow-secondary/20">
-                            <h3 className="text-xl font-bold text-secondary mb-4 flex items-center gap-2">
-                                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 7v10c0 2.21 3.582 4 8 4s8-1.79 8-4V7M4 7c0 2.21 3.582 4 8 4s8-1.79 8-4M4 7c0-2.21 3.582-4 8-4s8 1.79 8 4m0 5c0 2.21-3.582 4-8 4s-8-1.79-8-4" />
-                                </svg>
-                                Base de Datos
-                            </h3>
-                            <div className="space-y-3">
-                                <div className="flex items-center gap-2 group-hover:translate-x-1 transition-transform">
-                                    <div className="w-2 h-2 bg-secondary rounded-full"></div>
-                                    <span>MongoDB</span>
-                                </div>
-                                <div className="flex items-center gap-2 group-hover:translate-x-1 transition-transform">
-                                    <div className="w-2 h-2 bg-secondary rounded-full"></div>
-                                    <span>PostgreSQL</span>
-                                </div>
-                                <div className="flex items-center gap-2 group-hover:translate-x-1 transition-transform">
-                                    <div className="w-2 h-2 bg-secondary rounded-full"></div>
-                                    <span>MySQL</span>
-                                </div>
-                            </div>
-                        </div>
-
-                        {/* Herramientas */}
-                        <div className="group p-6 bg-gradient-to-br from-white/5 to-white/10 rounded-xl hover:from-white/10 hover:to-white/20 transition-all duration-300 border border-white/10 hover:border-secondary/50 hover:shadow-lg hover:shadow-secondary/20">
-                            <h3 className="text-xl font-bold text-secondary mb-4 flex items-center gap-2">
-                                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" />
-                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
-                                </svg>
-                                Herramientas
-                            </h3>
-                            <div className="space-y-3">
-                                <div className="flex items-center gap-2 group-hover:translate-x-1 transition-transform">
-                                    <div className="w-2 h-2 bg-secondary rounded-full"></div>
-                                    <span>Git & GitHub</span>
-                                </div>
-                                <div className="flex items-center gap-2 group-hover:translate-x-1 transition-transform">
-                                    <div className="w-2 h-2 bg-secondary rounded-full"></div>
-                                    <span>Docker</span>
-                                </div>
-                                <div className="flex items-center gap-2 group-hover:translate-x-1 transition-transform">
-                                    <div className="w-2 h-2 bg-secondary rounded-full"></div>
-                                    <span>Postman</span>
-                                </div>
-                            </div>
-                        </div>
-
-                        {/* Testing */}
-                        <div className="group p-6 bg-gradient-to-br from-white/5 to-white/10 rounded-xl hover:from-white/10 hover:to-white/20 transition-all duration-300 border border-white/10 hover:border-secondary/50 hover:shadow-lg hover:shadow-secondary/20">
-                            <h3 className="text-xl font-bold text-secondary mb-4 flex items-center gap-2">
-                                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                                </svg>
-                                Testing
-                            </h3>
-                            <div className="space-y-3">
-                                <div className="flex items-center gap-2 group-hover:translate-x-1 transition-transform">
-                                    <div className="w-2 h-2 bg-secondary rounded-full"></div>
-                                    <span>Jest</span>
-                                </div>
-                                <div className="flex items-center gap-2 group-hover:translate-x-1 transition-transform">
-                                    <div className="w-2 h-2 bg-secondary rounded-full"></div>
-                                    <span>React Testing Library</span>
-                                </div>
-                                <div className="flex items-center gap-2 group-hover:translate-x-1 transition-transform">
-                                    <div className="w-2 h-2 bg-secondary rounded-full"></div>
-                                    <span>Pytest</span>
-                                </div>
-                            </div>
-                        </div>
-
-                        {/* Metodologías */}
-                        <div className="group p-6 bg-gradient-to-br from-white/5 to-white/10 rounded-xl hover:from-white/10 hover:to-white/20 transition-all duration-300 border border-white/10 hover:border-secondary/50 hover:shadow-lg hover:shadow-secondary/20">
-                            <h3 className="text-xl font-bold text-secondary mb-4 flex items-center gap-2">
-                                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
-                                </svg>
-                                Metodologías
-                            </h3>
-                            <div className="space-y-3">
-                                <div className="flex items-center gap-2 group-hover:translate-x-1 transition-transform">
-                                    <div className="w-2 h-2 bg-secondary rounded-full"></div>
-                                    <span>Agile & Scrum</span>
-                                </div>
-                                <div className="flex items-center gap-2 group-hover:translate-x-1 transition-transform">
-                                    <div className="w-2 h-2 bg-secondary rounded-full"></div>
-                                    <span>CI/CD</span>
-                                </div>
-                                <div className="flex items-center gap-2 group-hover:translate-x-1 transition-transform">
-                                    <div className="w-2 h-2 bg-secondary rounded-full"></div>
-                                    <span>TDD</span>
-                                </div>
-                            </div>
-                        </div>
+                    {/* Componente dinámico de skills (renderizado abajo) */}
+                    <div className="mt-8">
+                        {/* Re-render skills como badges y barras de progreso */}
+                        <SkillsGrid />
                     </div>
                 </div>
             </ContainerPage>
