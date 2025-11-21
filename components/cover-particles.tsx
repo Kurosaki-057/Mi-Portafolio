@@ -8,9 +8,11 @@ import { useTheme } from "./theme-provider";
 
 export const CoverParticles = () => {
     const [init, setInit] = useState(false);
+    const [mounted, setMounted] = useState(false);
     const { theme } = useTheme();
 
     useEffect(() => {
+        setMounted(true);
         initParticlesEngine(async (engine) => {
             await loadSlim(engine);
         }).then(() => {
@@ -18,11 +20,14 @@ export const CoverParticles = () => {
         });
     }, []);
 
+    if (!mounted || !init) {
+        return null;
+    }
+
     const particleColor = theme === "dark" ? "#ffffff" : "#999999";
     const linkColor = theme === "dark" ? "#ffffff" : "#dddddd";
 
     return (
-        init &&
         <div className="w-[0px]">
             <Particles
                 id="tsparticles"
