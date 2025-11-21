@@ -1,10 +1,8 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
-import Navbar from "@/components/navbar";
-import ScrollToTop from "@/components/scroll-to-top";
-import SocialLinks from "@/components/social-links";
 import { ThemeProvider } from "@/components/theme-provider";
+import { ClientLayout } from "@/components/client-layout";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -23,9 +21,7 @@ export default function RootLayout({
       <body className={inter.className}>
         <ThemeProvider>
           {children}
-          <Navbar />
-          <ScrollToTop />
-          <SocialLinks />
+          <ClientLayout />
         </ThemeProvider>
       </body>
     </html>
