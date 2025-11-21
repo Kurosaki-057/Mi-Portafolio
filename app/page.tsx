@@ -5,6 +5,7 @@ import { CoverParticles } from "@/components/cover-particles";
 import { TypeAnimation } from 'react-type-animation';
 import Link from 'next/link';
 import TransitionPage from "@/components/transition-page";
+import { DownloadCV } from "@/components/download-cv";
 
 export default function Home() {
   return (
@@ -65,15 +66,16 @@ export default function Home() {
               >
                 <Link 
                   href="/portfolio"
-                  className="px-8 py-3 rounded-lg bg-gradient-to-r from-secondary to-purple-500 hover:opacity-90 transition-all duration-300 text-lg font-medium"
+                  className="px-8 py-3 rounded-lg bg-gradient-to-r from-secondary to-purple-500 hover:opacity-90 transition-all duration-300 text-lg font-medium text-center"
                 >
                   Ver proyectos
                 </Link>
+                <DownloadCV variant="button" />
                  <a
                    href={`https://wa.me/573044434698?text=${encodeURIComponent('Hola, quisiera contactar contigo sobre tus servicios.')}`}
                    target="_blank"
                    rel="noopener noreferrer"
-                   className="px-8 py-3 rounded-lg border-2 border-secondary hover:bg-secondary/10 transition-all duration-300 text-lg font-medium"
+                   className="px-8 py-3 rounded-lg border-2 border-secondary hover:bg-secondary/10 transition-all duration-300 text-lg font-medium text-center"
                  >
                    Contacta conmigo
                  </a>

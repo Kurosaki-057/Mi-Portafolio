@@ -181,7 +181,11 @@ export const dataPortfolio = [
         urlDemo: "#!",
     },
     {
-        
+        id: 3,
+        title: "Data Science Project",
+        image: "/Data.png",
+        urlGithub: "https://github.com/Kurosaki-057/Data",
+        urlDemo: "#!",
     }
 ];
 

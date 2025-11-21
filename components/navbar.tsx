@@ -4,26 +4,20 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { Moon, Sun } from "lucide-react";
+import { DownloadCV } from "./download-cv";
+import { useTheme } from "./theme-provider";
 
 const Navbar = () => {
-    const [isDark, setIsDark] = useState(false);
+    const { theme, toggleTheme } = useTheme();
+    const [mounted, setMounted] = useState(false);
 
     useEffect(() => {
-        // Verificar preferencia guardada en localStorage
-        const savedTheme = localStorage.getItem('theme');
-        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-        
-        if (savedTheme === 'dark' || (!savedTheme && prefersDark)) {
-            setIsDark(true);
-            document.documentElement.classList.add('dark');
-        }
+        setMounted(true);
     }, []);
 
-    const toggleTheme = () => {
-        setIsDark(!isDark);
-        document.documentElement.classList.toggle('dark');
-        localStorage.setItem('theme', isDark ? 'light' : 'dark');
-    };
+    if (!mounted) {
+        return null;
+    }
 
     return (
         <motion.div
@@ -52,13 +46,15 @@ const Navbar = () => {
                             </div>
                         </motion.div>
                     ))}
+                    <DownloadCV variant="icon" showLabel={true} />
                     <motion.div
                         whileHover={{ scale: 1.1 }}
                         whileTap={{ scale: 0.9 }}
                         className="px-3 py-2 transition duration-150 rounded-full cursor-pointer hover:bg-secondary dark:hover:bg-gray-700"
                         onClick={toggleTheme}
+                        title={theme === "light" ? "Activar modo oscuro" : "Activar modo claro"}
                     >
-                        {isDark ? <Sun className="w-5 h-5" /> : <Moon className="w-5 h-5" />}
+                        {theme === "dark" ? <Sun className="w-5 h-5" /> : <Moon className="w-5 h-5" />}
                     </motion.div>
                 </div>
             </nav>

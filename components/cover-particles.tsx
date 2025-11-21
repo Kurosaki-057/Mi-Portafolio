@@ -4,9 +4,11 @@ import { useEffect, useState } from "react";
 
 import { loadSlim } from "@tsparticles/slim";
 import Particles, { initParticlesEngine } from "@tsparticles/react";
+import { useTheme } from "./theme-provider";
 
 export const CoverParticles = () => {
     const [init, setInit] = useState(false);
+    const { theme } = useTheme();
 
     useEffect(() => {
         initParticlesEngine(async (engine) => {
@@ -16,11 +18,15 @@ export const CoverParticles = () => {
         });
     }, []);
 
+    const particleColor = theme === "dark" ? "#ffffff" : "#999999";
+    const linkColor = theme === "dark" ? "#ffffff" : "#dddddd";
+
     return (
         init &&
         <div className="w-[0px]">
             <Particles
                 id="tsparticles"
+                key={theme}
                 options={{
                     fpsLimit: 120,
                     interactivity: {
@@ -46,10 +52,10 @@ export const CoverParticles = () => {
                     },
                     particles: {
                         color: {
-                            value: "#77777",
+                            value: particleColor,
                         },
                         links: {
-                            color: "#ffffff",
+                            color: linkColor,
                             distance: 150,
                             enable: true,
                             opacity: 0.5,
