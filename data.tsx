@@ -1,5 +1,5 @@
 import type { ReactElement } from "react";
-import { BookText, CodeSquare, HomeIcon, UserRound, Linkedin, Instagram, Rss, Crop, Pencil, Computer, Rocket, Server, Database } from "lucide-react";
+import { BookText, CodeSquare, HomeIcon, UserRound, Linkedin, Instagram, Rss, Crop, Pencil, Computer, Server, Database, Bot, Brain } from "lucide-react";
 
 // Tipos para los datos exportados
 export interface SocialNetwork {
@@ -159,9 +159,9 @@ export const serviceData = [
         description: "Desarrollo de APIs RESTful y GraphQL, implementación de arquitecturas escalables y seguras con Node.js y Express",
     },
     {
-        icon: <Rocket />,
-        title: "DevOps",
-        description: "Configuración de pipelines CI/CD, despliegue en la nube y gestión de contenedores con Docker",
+        icon: <Brain />,
+        title: "Desarrollo e Investigación en IA",
+        description: "Diseño y entrenamiento de modelos de machine learning, integración de LLMs y automatización de flujos de trabajo con inteligencia artificial",
     },
 ];
 
@@ -186,6 +186,13 @@ export const dataPortfolio = [
         image: "/Data.png",
         urlGithub: "https://github.com/Kurosaki-057/Data",
         urlDemo: "#!",
+    },
+    {
+        id: 4,
+        title: "University Chatbot",
+        image: "/university-chatbot.svg",
+        urlGithub: "https://github.com/rhadechine/UniversityChatbot",
+        urlDemo: "https://f4ndmw86.insforge.site",
     }
 ];
 
@@ -208,8 +215,13 @@ export const skills = [
         icon: <Database size={24} />
     },
     {
-        name: "DevOps",
-        level: "Básico",
-        icon: <Rocket size={24} />
+        name: "Desarrollador de IA",
+        level: "Intermedio",
+        icon: <Bot size={24} />
+    },
+    {
+        name: "Investigador de IA",
+        level: "Intermedio",
+        icon: <Brain size={24} />
     }
 ];
